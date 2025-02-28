@@ -10,10 +10,8 @@ COPY *.whl /app/
 # Create directory structure
 RUN mkdir -p /data
 
-# Install the backend with necessary build dependencies
-RUN apk add --no-cache gcc musl-dev python3-dev \
-    && pip install --no-cache-dir /app/*.whl \
-    && apk del gcc musl-dev python3-dev
+# Install the backend
+RUN pip install --no-cache-dir /app/*.whl
 
 # Copy frontend files (for future)
 COPY frontend/ /app/frontend/
