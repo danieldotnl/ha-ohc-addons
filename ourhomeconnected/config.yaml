@@ -1,6 +1,6 @@
 name: "Our Home Connected"
 description: "Version control for your Home Assistant automations and scripts with GitHub integration"
-version: "v0.1.2"
+version: "v0.1.3"
 slug: "ourhomeconnected"
 init: false
 arch:
