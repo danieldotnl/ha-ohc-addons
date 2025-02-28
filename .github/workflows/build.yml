@@ -1,0 +1,65 @@
+name: Build Home Assistant Addon
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        arch: [amd64, aarch64, armv7]
+    steps:
+      - uses: actions/checkout@v4
+      
+      # Download the latest backend package
+      - name: Download OHC Backend
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          workflow: build-package.yml
+          repo: danieldotnl/ohc-addon-backend
+          name: ohc-backend-package
+          path: backend-package
+      
+      # Prepare the build context
+      - name: Prepare build context
+        run: |
+          # Create empty frontend directory for now
+          mkdir -p frontend
+          
+          # Copy the wheel file
+          cp backend-package/*.whl ohc-backend.whl
+          
+          # Copy the Dockerfile
+          cp .github/Dockerfile ./
+      
+      # Set up QEMU for multi-architecture builds
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      
+      # Set up Docker Buildx
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      
+      # Login to GitHub Container Registry
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      
+      # Build and push Docker image
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/ourhomeconnected-${{ matrix.arch }}:latest
+            ${{ startsWith(github.ref, 'refs/tags/v') && format('ghcr.io/{0}/ourhomeconnected-{1}:{2}', github.repository_owner, matrix.arch, github.ref_name) || '' }}

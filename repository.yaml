@@ -1,0 +1,4 @@
+# https://developers.home-assistant.io/docs/add-ons/repository#repository-configuration
+name: Our Home Connected - Home Assistant add-on repository
+url: 'https://github.com/danieldotnl/ha-ohc-addons'
+maintainer: Daniel <danieldotnl@outlook.com>
