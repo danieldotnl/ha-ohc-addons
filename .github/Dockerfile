@@ -5,7 +5,7 @@ FROM ${BUILD_FROM}
 WORKDIR /app
 
 # Copy the OHC Backend wheel file
-COPY ohc-backend.whl /app/
+COPY *.whl /app/
 
 # Create directories
 RUN mkdir -p /data
