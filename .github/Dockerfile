@@ -11,7 +11,7 @@ COPY ohc-backend.whl /app/
 RUN mkdir -p /data
 
 # Install the backend
-RUN pip install --no-cache-dir /app/ohc-backend.whl
+RUN pip install --no-cache-dir /app/*.whl
 
 # Expose the web interface
 EXPOSE 8000
