@@ -30,9 +30,9 @@ jobs:
         run: |
           # Create empty frontend directory for now
           mkdir -p frontend
-          
+        
           # Copy the wheel file
-          cp backend-package/*.whl ohc-backend.whl
+          cp backend-package/*.whl ./
           
           # Copy the Dockerfile
           cp .github/Dockerfile ./
