@@ -16,6 +16,7 @@ ingress: true
 ingress_port: 8000
 panel_icon: mdi:git
 panel_title: "OHC"
+homeassistant_api: true
 map:
   - config:rw
 environment:
