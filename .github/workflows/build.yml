@@ -36,6 +36,9 @@ jobs:
           
           # Copy the Dockerfile
           cp .github/Dockerfile ./
+
+          # Copy the run.sh
+          cp .github/run.sh ./
       
       # Set up QEMU for multi-architecture builds
       - name: Set up QEMU

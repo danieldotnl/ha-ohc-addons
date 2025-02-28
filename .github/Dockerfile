@@ -17,6 +17,16 @@ RUN apk add --no-cache gcc musl-dev python3-dev \
 # Copy frontend files (for future)
 COPY frontend/ /app/frontend/
 
+# Add Home Assistant add-on labels
+LABEL \
+    io.hass.version="1.0.0" \
+    io.hass.type="addon" \
+    io.hass.arch="armhf|aarch64|i386|amd64"
+
+# Copy run script (create this if you don't have one)
+COPY run.sh /
+RUN chmod a+x /run.sh
+
 # Expose the web interface
 EXPOSE 8000
 
