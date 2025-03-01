@@ -13,6 +13,7 @@ log "Before:"
 log "ENVIRONMENT: $ENVIRONMENT"
 log "HA_SERVER: $HA_SERVER"
 log "HA_DATA_FOLDER: $HA_DATA_FOLDER"
+log "SUPERVISOR_TOKEN: $SUPERVISOR_TOKEN"
 
 # Set environment variables with logging
 log "Setting environment variables"
@@ -25,6 +26,7 @@ log "After:"
 log "ENVIRONMENT: $ENVIRONMENT"
 log "HA_SERVER: $HA_SERVER"
 log "HA_DATA_FOLDER: $HA_DATA_FOLDER"
+log "SUPERVISOR_TOKEN: $SUPERVISOR_TOKEN"
 
 # Run the application
 log "Starting OHC Backend"

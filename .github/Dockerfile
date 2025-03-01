@@ -20,7 +20,7 @@ COPY frontend/ /app/frontend/
 LABEL \
     io.hass.version="1.0.0" \
     io.hass.type="addon" \
-    io.hass.arch="armhf|aarch64|i386|amd64"
+    io.hass.arch="aarch64|amd64"
 
 # Copy run script (create this if you don't have one)
 COPY run.sh /
@@ -30,4 +30,4 @@ RUN chmod a+x /run.sh
 EXPOSE 8000
 
 # Command to run your application
-CMD ["python", "-m", "ohc_backend"]
+ENTRYPOINT ["/run.sh"]
