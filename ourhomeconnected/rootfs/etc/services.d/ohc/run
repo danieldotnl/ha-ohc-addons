@@ -1,0 +1,11 @@
+#!/usr/bin/with-contenv bashio
+
+# Get config
+CONFIG_PATH=/data/options.json
+LOG_LEVEL=$(bashio::config 'log_level')
+
+# Export any environment variables your app needs
+export LOG_LEVEL="$LOG_LEVEL"
+
+# Run your FastAPI application using exec
+exec python -m ohc_backend
