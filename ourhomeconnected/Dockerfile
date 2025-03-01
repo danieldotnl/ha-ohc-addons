@@ -11,7 +11,9 @@ RUN apk add --no-cache python3 py3-pip
 COPY backend-package/*.whl /app/ohc_backend.whl
 
 # Install the wheel file using pip3
-RUN pip3 install /app/ohc_backend.whl
+#RUN pip3 install /app/ohc_backend.whl
+# Install the wheel file with the override flag
+RUN pip3 install --break-system-packages /app/ohc_backend.whl
 
 # Copy root filesystem
 COPY rootfs /
