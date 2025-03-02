@@ -58,7 +58,7 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           build-args: |
             BUILD_ARCH=${{ matrix.arch }}
-          tags: ghcr.io/${{ github.repository_owner }}/ourhomeconnected-${{ matrix.arch }}:${{ github.ref_name != 'refs/heads/main' && github.ref_name || 'latest' }}
+          tags: ghcr.io/${{ github.repository_owner }}/ourhomeconnected-addon-${{ matrix.arch }}:${{ github.ref_name != 'refs/heads/main' && github.ref_name || 'latest' }}
 
       - name: Update version in config.yaml
         if: startsWith(github.ref, 'refs/tags/v')
